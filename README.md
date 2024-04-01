@@ -37,6 +37,7 @@ This sample do the following:
     }
     @(
         'Reader'
+        # Appropriate roles depend on the Azure REST API that you want to call.
     ) | ForEach-Object -Process { New-AzRoleAssignment @params -RoleDefinitionName $_ }
     ```
 
@@ -121,6 +122,7 @@ This sample do the following:
     }
     @(
         'Reader'
+        # Appropriate roles depend on the Azure REST API that you want to call.
     ) | ForEach-Object -Process { New-AzRoleAssignment @params -RoleDefinitionName $_ }
     ```
 
