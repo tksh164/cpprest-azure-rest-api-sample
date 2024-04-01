@@ -2,6 +2,9 @@
 
 This repo contains Azure REST API samples using C++ REST SDK (cpprestsdk).
 
+- [OAuth 2.0 client credentials flow sample](#oauth-20-client-credentials-flow-sample)
+- [OAuth 2.0 device authorization grant flow sample](#oauth-20-device-authorization-grant-flow-sample)
+
 ## OAuth 2.0 client credentials flow sample
 
 This sample do the following:
