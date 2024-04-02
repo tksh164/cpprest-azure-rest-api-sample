@@ -22,7 +22,7 @@ pplx::task<json::value> GetAccessToken(const utility::string_t& tenantId, const 
 {
     return pplx::create_task([tenantId, clientId, clientSecret]
     {
-        http_client client(U("https://login.microsoftonline.com/") + tenantId + U("/oauth2/token"));
+        http_client client(U("https://login.microsoftonline.com/") + tenantId + U("/oauth2/v2.0/token"));
 
         // Create a request.
         http_request request(methods::POST);
