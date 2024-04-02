@@ -22,15 +22,17 @@ pplx::task<json::value> GetAccessToken(const utility::string_t& tenantId, const 
 {
     return pplx::create_task([tenantId, clientId, clientSecret]
     {
-        http_client client(U("https://login.microsoftonline.com/") + tenantId + U("/oauth2/token"));
+        http_client client(U("https://login.microsoftonline.com/") + tenantId + U("/oauth2/v2.0/token"));
 
         // Create a request.
         http_request request(methods::POST);
         request.headers().add(U("Content-Type"), U("application/x-www-form-urlencoded"));
 
         // Set the request body.
-        utility::string_t body = U("grant_type=client_credentials&client_id=") + clientId + U("&client_secret=") + clientSecret + U("&resource=https%3A%2F%2Fmanagement.azure.com%2F");
-        request.set_body(body, U("application/x-www-form-urlencoded"));
+        utility::stringstream_t requestBodyStream;
+        requestBodyStream << U("grant_type=client_credentials") << "&client_id=" << clientId << U("&client_secret=") << clientSecret << U("&scope=https://management.azure.com/.default");
+        const utf8string body = utility::conversions::to_utf8string(requestBodyStream.str());
+        request.set_body(body, "application/x-www-form-urlencoded");
 
         // Sen the request and recieve response.
         return client.request(request)
